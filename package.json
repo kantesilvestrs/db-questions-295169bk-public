@@ -1,0 +1,32 @@
+{
+  "name": "ui-db",
+  "version": "1.0.0",
+  "description": "ui-db-test",
+  "keywords": [],
+  "homepage": "https://github.com/bmvantunes/ui-db#readme",
+  "bugs": {
+    "url": "https://github.com/bmvantunes/ui-db/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bmvantunes/ui-db.git"
+  },
+  "license": "ISC",
+  "author": "Trade Surveillance Program Team",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "precommit": "pretty-quick --staged",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "@types/jest": "26.0.0",
+    "husky": "4.2.5",
+    "jest": "26.0.1",
+    "prettier": "2.0.5",
+    "pretty-quick": "2.0.1",
+    "ts-jest": "26.1.0",
+    "typescript": "3.9.5"
+  }
+}
