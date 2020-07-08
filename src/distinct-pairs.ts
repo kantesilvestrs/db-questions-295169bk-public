@@ -1,4 +1,4 @@
-// Benchmarks: https://jsben.ch/3239w
+// Benchmarks: https://jsben.ch/fsJbh
 
 /**
  * Returns number of distinct pairs matching target value.
@@ -15,22 +15,34 @@ export function distinctPairs(items: Array<number>, target: number): number {
   // Store matched values for lookup
   const matchedValues: Array<undefined> = [];
 
+  // Store potential pairs
+  const potentialPairs: Array<number> = [];
+
   // Store items length (standard practice from C# where accessing object property is more expensive than accessing primitive value)
   const itemCount = items.length;
 
   for (let i = 0; i < itemCount; i++) {
-    for (let x = 0; x < itemCount; x++) {
-      // If one of the values has been matched or it's the same value, skip iteration
-      if (x === i || items[i] in matchedValues || items[x] in matchedValues) {
-        continue;
-      }
+    // Set current iterration number
+    const currentNumber = items[i];
 
-      // If two values match the target value update distinctPair counter and add those values to the matched value lookup table
-      if (items[i] + items[x] === target) {
-        distinctPairCounter++;
-        matchedValues[items[i]] = undefined;
-        matchedValues[items[x]] = undefined;
-      }
+    // Skip iterration if the current number already exists in matched values
+    if (currentNumber in matchedValues) {
+      continue;
+    }
+
+    // Get the potential paired value for the current iterration number
+    const potentialPairedValue = target - currentNumber;
+
+    // If we current iterration number to a potential pair insert both values into matched values and increment counter
+    if (potentialPairs[potentialPairedValue] === currentNumber) {
+      matchedValues[currentNumber] = undefined;
+      matchedValues[potentialPairs[currentNumber]] = undefined;
+      distinctPairCounter++;
+    }
+    // Otherwise we create a new potential pair
+    // Skipping condition check as it would slow down performance on diverse set of numbers
+    else {
+      potentialPairs[currentNumber] = potentialPairedValue;
     }
   }
 
